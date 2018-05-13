@@ -14,7 +14,7 @@ MINIMUM STAKE AGE : 24 Hr
 
 Coin Maturity : 80
 
-MAX SUPPLY : 88,000,000 Coins
+MAX SUPPLY : 55,000,000 Coins
 
 RPC Port: 22938
 

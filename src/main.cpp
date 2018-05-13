@@ -48,7 +48,8 @@ set<pair<COutPoint, unsigned int> > setStakeSeen;
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
 
 unsigned int nStakeMinAge = 1 * 60 * 60; // 1 hour
-unsigned int nStakeMaxAge = 48 * 24 * 60 * 60; // 48 Days.
+//unsigned int nStakeMaxAge = 48 * 24 * 60 * 60; // 48 Days.
+unsigned int nStakeMaxAge = -1;
 unsigned int nModifierInterval = 2 * 60; // time to elapse before new modifier is computed
 
 int nCoinbaseMaturity = 15;
@@ -1377,7 +1378,7 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
 	// Base reward.
 	int64_t nSubsidy;
 	if (nHeight < 5)
-		nSubsidy = 1 * COIN;
+		nSubsidy =  3600000* COIN;
 	else
 		nSubsidy = 1 * COIN;
 
