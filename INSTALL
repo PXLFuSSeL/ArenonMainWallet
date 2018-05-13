@@ -1,0 +1,9 @@
+Building Arenon
+
+See doc/readme-qt.rst for instructions on building Arenon QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Arenon.
+
+See doc/build-*.txt for instructions on building Arenond,
+the intended-for-services, no-graphical-interface, reference
+implementation of Arenon.
