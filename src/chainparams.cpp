@@ -124,7 +124,7 @@ public:
         strDarksendPoolDummyAddress = "AVjui6eyjMHU37MLKr4qb49jURXr2f3ApK";
 
 
-        nLastPOWBlock = 5;
+        nLastPOWBlock = 20;
         nPOSStartBlock = 1;
     }
 
