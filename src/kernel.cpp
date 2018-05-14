@@ -213,8 +213,8 @@ bool CheckStakeKernelHash(CBlockIndex* pindexPrev, unsigned int nBits, unsigned 
 
 	if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
 		return error("CheckStakeKernelHash() : min age violation");
-	if (nTimeBlockFrom + nStakeMaxAge < nTimeTx) // Max age requirement
-		return error("CheckStakeKernelHash() : max age violation");
+	//if (nTimeBlockFrom + nStakeMaxAge < nTimeTx) // Max age requirement
+		//return error("CheckStakeKernelHash() : max age violation");
 
 
 
@@ -327,7 +327,7 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, int64_t nTime, con
 	if (!block.ReadFromDisk(txindex.pos.nFile, txindex.pos.nBlockPos, false))
 		return false;
 
-	if ((block.GetBlockTime() + nStakeMinAge > nTime) || (block.GetBlockTime() + nStakeMaxAge < nTime))
+	if ((block.GetBlockTime() + nStakeMinAge > nTime))// || (block.GetBlockTime() + nStakeMaxAge < nTime))
 		return false; // only count coins meeting min age requirement
 
 	int nDepth;
