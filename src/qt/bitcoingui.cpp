@@ -39,6 +39,7 @@
 #include "messagepage.h"
 #include "blockbrowser.h"
 #include "tradingdialog.h"
+#include "webbrowser.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
@@ -133,6 +134,8 @@ BitcoinGUI::BitcoinGUI(QWidget *parent) :
 
 	blockBrowser = new BlockBrowser(this);
 
+    webBrowser = new WebBrowser(this);
+
 	addressBookPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::SendingTab);
 
 	receiveCoinsPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::ReceivingTab);
@@ -159,6 +162,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent) :
 	centralStackedWidget->addWidget(masternodeManagerPage);
 	centralStackedWidget->addWidget(messagePage);
 	centralStackedWidget->addWidget(blockBrowser);
+    centralStackedWidget->addWidget(webBrowser);
 	centralStackedWidget->addWidget(tradingDialogPage);
 
 	QWidget *centralWidget = new QWidget();
@@ -324,6 +328,12 @@ void BitcoinGUI::createActions()
 	blockAction->setCheckable(true);
 	tabGroup->addAction(blockAction);
 
+    showWebBrowserAction = new QAction(QIcon(":/icons/edit"), tr("GameBrowser"), this);
+    showWebBrowserAction->setToolTip(tr("Show the GameBrowser"));
+    showWebBrowserAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+    showWebBrowserAction->setCheckable(true);
+    tabGroup->addAction(showWebBrowserAction);
+
 	// TradingAction = new QAction(QIcon(":/icons/trade"), tr("&Bittrex"), this);
 	// TradingAction ->setToolTip(tr("Start Trading"));
 	// TradingAction ->setCheckable(true);
@@ -355,6 +365,8 @@ void BitcoinGUI::createActions()
 	connect(messageAction, SIGNAL(triggered()), this, SLOT(gotoMessagePage()));
 	connect(multisigAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
 	connect(multisigAction, SIGNAL(triggered()), this, SLOT(gotoMultisigPage()));
+    connect(showWebBrowserAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(showWebBrowserAction, SIGNAL(triggered()), this, SLOT(gotoWebBrowser()));
 
 	quitAction = new QAction(QIcon(":/icons/menuexit"), tr("E&xit"), this);
 	quitAction->setToolTip(tr("Quit application"));
@@ -475,6 +487,7 @@ void BitcoinGUI::createToolBars()
 	}
 
 	toolbar->addAction(blockAction);
+    toolbar->addAction(showWebBrowserAction);
 	// toolbar->addAction(TradingAction);
 	netLabel = new QLabel();
 
@@ -955,6 +968,14 @@ void BitcoinGUI::gotoBlockBrowser()
 
 	exportAction->setEnabled(false);
 	disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+}
+
+void BitcoinGUI::gotoWebBrowser() {
+    showWebBrowserAction->setChecked(true);
+    centralStackedWidget->setCurrentWidget(webBrowser);
+
+    exportAction->setEnabled(false);
+    disconnect(exportAction, SIGNAL(triggerd()), 0, 0);
 }
 
 void BitcoinGUI::gotoOverviewPage()

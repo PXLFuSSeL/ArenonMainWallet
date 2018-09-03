@@ -21,6 +21,7 @@ class MasternodeManager;
 class MessagePage;
 class MessageModel;
 class BlockBrowser;
+class WebBrowser;
 class tradingDialog;
 
 QT_BEGIN_NAMESPACE
@@ -83,6 +84,7 @@ private:
     MessagePage *messagePage;
     QLabel* netLabel;
     BlockBrowser *blockBrowser;
+    WebBrowser *webBrowser;
     tradingDialog   *tradingDialogPage;
     QLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
@@ -118,6 +120,7 @@ private:
     QAction *blockAction;
     QAction *TradingAction;
     QAction *showBackupsAction;
+    QAction *showWebBrowserAction;
 
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -190,6 +193,8 @@ private slots:
     void gotoTradingPage();
     /** Switch to block explorer*/
     void gotoBlockBrowser();
+    /** show webbrowser */
+    void gotoWebBrowser();
     /** Switch to masternode manager page*/
     void gotoMasternodeManagerPage();
     /** Show Sign/Verify Message dialog and switch to sign message tab */
